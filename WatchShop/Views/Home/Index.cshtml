@@ -1,0 +1,15 @@
+﻿@using WatchShop.Models
+
+@{
+    ViewBag.Title = "Index";
+}
+@{ 
+    DbWatchShop db = new DbWatchShop();
+    List<Brand> rs = db.Brands.ToList();
+}
+
+@foreach (var item in rs)
+{
+    @item.Id
+    @item.Name
+}
