@@ -1,15 +1,161 @@
-﻿@using WatchShop.Models
-
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
-@{ 
-    DbWatchShop db = new DbWatchShop();
-    List<Brand> rs = db.Brands.ToList();
+
+@section AddCSS{
+    <link rel="stylesheet" href="~/Content/css/short-list-product.css">
+    <link rel="stylesheet" href="~/Content/css/index.css">
+    <link rel="stylesheet" href="~/Content/css/one-product.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 }
 
-@foreach (var item in rs)
-{
-    @item.Id
-    @item.Name
+<div class="main">
+    <div class="slider">
+        <div class="slide-img">
+            <img src="assert/image/banner/b1.jpg" alt="">
+            <img src="assert/image/banner/b2.jpg" alt="">
+            <img src="assert/image/banner/b3.jpg" alt="">
+            <img src="assert/image/banner/b4.jpg" alt="">
+            <img src="assert/image/banner/b5.jpg" alt="">
+        </div>
+    </div>
+    <!-- START ADS  -->
+    <div class="container-adss">
+        <div class="container-adss__content">
+            <div class="container-adss__content-text">
+                <h2 class="container-adss__content--heading">
+                    Luxurious Watch
+                </h2>
+                <p class="container-adss__content--des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat quas unde, dolor eaque culpa omnis pariatur reprehenderit exercitationem, tenetur deserunt nam est numquam cupiditate magni commodi porro ex aliquam labore?</p>
+                <a class="container-adss__content--link" href="./product.html">ORDER NOW</a>
+            </div>
+            <div class="container-adss__content-img">
+                <img src="assert/image/product/cckt06_1.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="container-adss__content">
+            <div class="container-adss__content-text">
+                <h2 class="container-adss__content--heading">
+                    Luxurious Watch
+                </h2>
+                <p class="container-adss__content--des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat quas unde, dolor eaque culpa omnis pariatur reprehenderit exercitationem, tenetur deserunt nam est numquam cupiditate magni commodi porro ex aliquam labore?</p>
+                <a class="container-adss__content--link" href="./product.html">ORDER NOW</a>
+            </div>
+
+            <div class="container-adss__content-img">
+                <img src="assert/image/product/cckt27_1.jpg" alt="">
+            </div>
+        </div>
+    </div>
+    <!-- END ADS  -->
+    <!-- START NEW ARRIVAL  -->
+    <div class="short-list-product">
+        <div class="header">
+            <div class="title">
+                <span>NEW ARRIVAL</span>
+            </div>
+            <div class="btns">
+                <a href="">See more</a>
+            </div>
+        </div>
+        <div class="content">
+            <div class="product-item">
+                <a href="product_detail.html">
+                    <div class="discount">
+                        <span>30%</span>
+                    </div>
+                    <div class="image">
+                        <img src="assert/image/product/cckt03_1.jpg">
+                    </div>
+                    <div class="name">
+                        <span>San pham 1</span>
+                    </div>
+                    <div class="price">
+                        <span class="old">$1000</span>
+                        <span class="new">$500</span>
+                    </div>
+                </a>
+            </div>
+            <div class="product-item">
+                <a href="product_detail.html">
+                    <div class="discount">
+                        <span>30%</span>
+                    </div>
+                    <div class="image">
+                        <img src="assert/image/product/cckt03_1.jpg">
+                    </div>
+                    <div class="name">
+                        <span>San pham 1</span>
+                    </div>
+                    <div class="price">
+                        <span class="old">$1000</span>
+                        <span class="new">$500</span>
+                    </div>
+                </a>
+            </div>
+            <div class="product-item">
+                <a href="product_detail.html">
+                    <div class="discount">
+                        <span>30%</span>
+                    </div>
+                    <div class="image">
+                        <img src="assert/image/product/cckt03_1.jpg">
+                    </div>
+                    <div class="name">
+                        <span>San pham 1</span>
+                    </div>
+                    <div class="price">
+                        <span class="old">$1000</span>
+                        <span class="new">$500</span>
+                    </div>
+                </a>
+            </div>
+            <div class="product-item">
+                <a href="product_detail.html">
+                    <div class="discount">
+                        <span>30%</span>
+                    </div>
+                    <div class="image">
+                        <img src="assert/image/product/cckt03_1.jpg">
+                    </div>
+                    <div class="name">
+                        <span>San pham 1</span>
+                    </div>
+                    <div class="price">
+                        <span class="old">$1000</span>
+                        <span class="new">$500</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- END NEW ARRIVAL -->
+    <div class="most-view">
+        <div class="most-view__img">
+            <img src="assert/image/product/cckt06_1.jpg" alt="">
+        </div>
+        <div class="most-view__text">
+            <h1 class="most-view__text--heading">BEST SELLER</h1>
+            <p class="most-view__text--des">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tenetur debitis, similique quos amet aut nobis deleniti, quidem ullam, itaque earum voluptatem recusandae ratione. Sit temporibus et tenetur possimus perferendis est.</p>
+            <button>
+                <a class="most-view__text--link" href="./product_detail.html">Discover Now</a>
+            </button>
+        </div>
+    </div>
+    <!-- START REGISTER NOTI  -->
+    <div class="register-noti">
+        <h2 class="featured-product__heading">Sign up for notifications </h2>
+        <div class="register-noti__form">
+            <input type="text">
+            <button>
+                <a href="">Sign up</a>
+            </button>
+        </div>
+    </div>
+    <!-- END REGISTER NOTI  -->
+</div>
+
+@section AddJS{
+    <script src="~/Content/js/slick.js"></script>
 }

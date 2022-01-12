@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@section AddCss{
+    <link rel="stylesheet" href="~/Content/css/register.css">
+}
+
+<div class="container-register">
+    <div class="register-left">
+        <div class="register-left__img">
+            <img src="assert/image/background/bg-form.jpg" alt="">
+        </div>
+    </div>
+    <div class="register-right">
+        <div class="register-right__header">
+            <h1 class="register-right__header--heading">Welcome Back!</h1>
+            <p class="register-right__header--des">Please use the account you have been give to register!</p>
+        </div>
+        <div class="register-right__form">
+            <form action="" method="post">
+                <p class="warning">Complete Full Infomation, Please !</p>
+                <div class="register-input">
+                    <label>Email</label>
+                    <input type="text" name="email">
+                </div>
+                <div class="register-input">
+                    <label>Password</label>
+                    <input type="password">
+                </div>
+                <div class="register-input">
+                    <label>Confirm Password</label>
+                    <input type="password" name="password">
+                </div>
+                <div class="register-input">
+                    <label>Address</label>
+                    <input type="text" name="address">
+                </div>
+                <div class="register-input">
+                    <label>Phone</label>
+                    <input type="text" name="phone">
+                </div>
+                <div class="register-input">
+                    <label>Avatar</label>
+                    <input type="file" name="avatar">
+                </div>
+                <div class="register-select">
+                    <a href="">Login</a>
+                </div>
+                <div class="register-right__btn">
+                    <button type="submit">
+                        <a href="">REGISTER</a>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+

@@ -13,6 +13,7 @@ namespace WatchShop.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            @Session["avatar"] = Url.Content("/content/image/avatar/hutao.png");
             List<Brand> rs = db.Brands.ToList();
             return View(rs);
         }

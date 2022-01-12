@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@section AddCSS{
+    <link rel="stylesheet" href="~/Content/css/login.css">
+}
+
+<div class="container-login">
+    <div class="login-left">
+        <div class="login-left__img">
+            <img src="assert/image/background/bg-form.jpg" alt="">
+        </div>
+    </div>
+    <div class="login-right">
+        <div class="login-right__header">
+            <h1 class="login-right__header--heading">Welcome Back!</h1>
+            <p class="login-right__header--des">Please use the account you have been give to login!</p>
+        </div>
+        <div class="login-right__form">
+            <form action="" method="post">
+                <p class="warning">Wrong Email Or Password</p>
+                <div class="login-input">
+                    <label>Email</label>
+                    <input type="text" name="email" id="email">
+                </div>
+                <div class="login-input">
+                    <label>Password</label>
+                    <input type="password" name="password" id="password">
+                </div>
+                <div class="show_hide_password">
+                    <i class="far fa-eye" id="togglePassword"></i>
+                </div>
+                <div class="login-select">
+                    <div class="remember">
+                        <input type="checkbox">
+                        <label>Remember me</label>
+                    </div>
+                    <a href="">Forgot password</a>
+                </div>
+                <div class="login-right__btn">
+                    <button type="submit">
+                        <a href="#">LOGIN</a>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+@section AddJS{
+    <script>
+        var togglePassword = document.querySelector("#togglePassword");
+        var password = document.querySelector("#password");
+        console.log(togglePassword);
+
+        togglePassword.addEventListener("click", function(e) {
+            const type =
+                password.getAttribute("type") === "password" ? "text" : "password";
+            password.setAttribute("type", type);
+            this.classList.toggle("fa-eye-slash");
+        });
+    </script>
+}

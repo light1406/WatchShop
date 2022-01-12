@@ -1,0 +1,31 @@
+.container-about {
+    width: 1100px;
+    max-width: 100%;
+    margin: 50px auto;
+}
+
+.about-header__heading {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.about-text__paragraph {
+    font-size: 1.6rem;
+    line-height: 3rem;
+    color: var(--black);
+    text-align: justify;
+    margin: 0 30px;
+}
+
+@media (max-width: 1023px) {
+    .container-about {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+    * {
+        font-size: 0.8rem;
+    }
+}

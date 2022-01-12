@@ -1,0 +1,216 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@section AddCSS{
+    <link rel="stylesheet" href="~/Content/css/personal.css">
+}
+
+<div class="contain">
+    <div class="nav">
+        <div class="user">
+            <div class="avt">
+                <img src="assert/image/avatar/hutao.png" width="100" />
+            </div>
+            <div class="nickname">
+                <span>Nguyễn Minh Châu</span><br>
+                <a href="">Change avatar</a>
+            </div>
+        </div>
+        <div class="menu">
+            <ul>
+                <li><a href="#tab-about">About</a></li>
+                <li><a href="#tab-order">Order</a></li>
+                <li><a href="#tab-address">Adress</a></li>
+                <li><a href="#tab-password">Change password</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="tab-content">
+        <div class="tab-item" id="tab-about">
+            <div class="title">
+                <span>My information</span>
+            </div>
+            <form>
+                <div class="form-item">
+                    <label>Full name</label>
+                    <input type="text" id="fname" name="fname" value="Nguyễn Minh Châu" />
+                </div>
+                <div class="form-item">
+                    <label>Email</label>
+                    <span>lig****@@gmail.com</span>
+                </div>
+                <div class="form-item">
+                    <label>Phone</label>
+                    <span>086***69</span>
+                </div>
+                <div class="form-item">
+                    <label>Gender</label>
+                    <input type="radio" id="male" name="gender" value="Male" checked=true>
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label for="male">Female</label>
+                    <input type="radio" id="other" name="gender" value="other">
+                    <label for="male">Other</label>
+                </div>
+                <div class="form-item">
+                    <label>Birth date</label>
+                    <input type="date" name="bdate" value="2001-06-14" min="1930-01-01" max="2021-12-31">
+                </div>
+                <input type="submit" name="submit" value="Save" />
+            </form>
+        </div>
+        <div class="tab-item" id="tab-order">
+            <div class="title">
+                <span>My order</span>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id Order</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Order 01</td>
+                        <td>$1000</td>
+                        <td>Delivered</td>
+                        <td>
+                            <a href="">Remove</a>
+                            <a href="">Go</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Order 01</td>
+                        <td>$1000</td>
+                        <td>Delivered</td>
+                        <td>
+                            <a href="">Remove</a>
+                            <a href="">Go</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Order 01</td>
+                        <td>$1000</td>
+                        <td>Delivered</td>
+                        <td>
+                            <a href="">Remove</a>
+                            <a href="">Go</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Order 01</td>
+                        <td>$1000</td>
+                        <td>Delivered</td>
+                        <td>
+                            <a href="">Remove</a>
+                            <a href="">Go</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Order 01</td>
+                        <td>$1000</td>
+                        <td>Delivered</td>
+                        <td>
+                            <a href="">Remove</a>
+                            <a href="">Go</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Order 01</td>
+                        <td>$1000</td>
+                        <td>Delivered</td>
+                        <td>
+                            <a href="">Remove</a>
+                            <a href="">Go</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Order 01</td>
+                        <td>$1000</td>
+                        <td>Delivered</td>
+                        <td>
+                            <a href="">Remove</a>
+                            <a href="">Go</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Order 01</td>
+                        <td>$1000</td>
+                        <td>Delivered</td>
+                        <td>
+                            <a href="">Remove</a>
+                            <a href="">Go</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Order 01</td>
+                        <td>$1000</td>
+                        <td>Delivered</td>
+                        <td>
+                            <a href="">Remove</a>
+                            <a href="">Go</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Order 01</td>
+                        <td>$1000</td>
+                        <td>Delivered</td>
+                        <td>
+                            <a href="">Remove</a>
+                            <a href="">Go</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-item" id="tab-address">
+            <div class="title">
+                <span>My address</span>
+            </div>
+            <form action="">
+                <div class="form-item">
+                    <label>Full name</label>
+                    <input type="text" name="fname" value="Nguyễn Minh Châu" />
+                </div>
+                <div class="form-item">
+                    <label>Phone</label>
+                    <input type="text" name="phone" value="0865703869" />
+                </div>
+                <div class="form-item">
+                    <label>Address</label>
+                    <input type="text" name="address" value="Tăng long 2, TQN, Hoài Nhơn, Bình Định">
+                </div>
+                <input type="submit" value="Save">
+            </form>
+        </div>
+        <div class="tab-item" id="tab-password">
+            <div class="title">
+                <span>Change password</span>
+            </div>
+            <form action="">
+                <div class="form-item">
+                    <label>Old password</label>
+                    <input type="password" name="old_password" value="140601">
+                </div>
+                <div class="form-item">
+                    <label>New password</label>
+                    <input type="password" name="new_password" value="123456789">
+                </div>
+                <div class="form-item">
+                    <label>Confirm password</label>
+                    <input type="password" name="comfirm_password" value="123456789">
+                </div>
+                <input type="submit" value="Save">
+            </form>
+        </div>
+    </div>
+</div>
+
+@section AddJS{
+    <script src="~/Content/js/personal.js"></script>
+}
