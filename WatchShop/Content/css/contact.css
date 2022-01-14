@@ -102,3 +102,7 @@
         margin-bottom: 50px;
     }
 }
+
+.text-danger {
+    color: red;
+}

@@ -11,12 +11,27 @@ namespace WatchShop.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    [Table("Contact")]
+
     public partial class Contact
     {
+        [Key]
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Need your name")]
         public string Name { get; set; }
+
+        [Required(ErrorMessage = "Need your email")]
+        [EmailAddress(ErrorMessage = "Wrong type email")]
+        [Display(Name = "Your email")]
         public string Email { get; set; }
+
+        [Required(ErrorMessage = "Need your content")]
+        [Display(Name = "Wanna say something else")]
         public string Message { get; set; }
+
     }
 }

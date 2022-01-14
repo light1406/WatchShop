@@ -7,11 +7,13 @@
     <link rel="stylesheet" href="~/Content/css/contact.css">
 }
 
+@model WatchShop.Models.Contact
+
 
 <div class="container-contact">
     <div class="contact-left">
         <div class="contact-left__background">
-            <img src="assert/image/background/bg-form.jpg" alt="">
+            <img src="@Url.Content("~/Content/image/background/bg-form.jpg")" alt="">
         </div>
         <div class="contact-left__social">
             <a href="">
@@ -40,30 +42,41 @@
             </p>
         </div>
         <div class="contact-right__form">
-            <form action="">
-                <div class="input-contact">
-                    <label class="contact-right__form--label">Name</label>
-                    <input type="text">
-                </div>
-                <div class="input-contact">
 
-                    <label class="contact-right__form--label">Email</label>
-                    <input type="text">
-                </div>
+            @using (Html.BeginForm("SendContact", "Contact", FormMethod.Post))
+            {
 
                 <div class="input-contact">
-                    <label class="contact-right__form--label">Want To Say Something else ?</label>
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "contact-right__form--label" })
+                    @Html.EditorFor(model => model.Name)
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+
+
+                <div class="input-contact">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "contact-right__form--label" })
+                    @Html.EditorFor(model => model.Email)
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="input-contact">
+                    @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "contact-right__form--label" })
                     <!-- <input type="text"> -->
-                    <textarea></textarea>
+                    @Html.TextAreaFor(model => model.Message)
+                    @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+
                 </div>
-            </form>
-            <div class="contact-right__btn">
-                <button>
-                    <a>CONTACT</a>
-                </button>
-            </div>
+                <div class="contact-right__btn">
+                    <button type="submit">
+                        CONTACT
+                    </button>
+                </div>
+            }
+
+
         </div>
 
     </div>
 </div>
+
 
