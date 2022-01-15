@@ -4,13 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b387ca1b81fe44d487d779672a020661" Name="Diagram1">
+      <Diagram DiagramId="cffe7b639bc344b08f63d93dbf571792" Name="Diagram1">
+        <EntityTypeShape EntityType="watch_shopModel.Banner" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="watch_shopModel.Brand" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="watch_shopModel.Contact" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="watch_shopModel.Contact" Width="1.5" PointX="7.75" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="watch_shopModel.Customer" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="watch_shopModel.Image" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="watch_shopModel.OrderDetail" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="watch_shopModel.Order" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="watch_shopModel.Order" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
         <EntityTypeShape EntityType="watch_shopModel.Product" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
         <AssociationConnector Association="watch_shopModel.fk_brand" ManuallyRouted="false" />
         <AssociationConnector Association="watch_shopModel.fk_customer" ManuallyRouted="false" />

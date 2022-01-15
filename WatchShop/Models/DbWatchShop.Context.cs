@@ -25,6 +25,7 @@ namespace WatchShop.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Banner> Banners { get; set; }
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }

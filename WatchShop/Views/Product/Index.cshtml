@@ -1,4 +1,4 @@
-﻿
+﻿@model List<WatchShop.Models.Product>
 @{
     ViewBag.Title = "Index";
 }
@@ -12,125 +12,26 @@
 <!-- PRODUCT START  -->
 <div id="products">
     <div class="list-product">
-        <div class="product-item">
-            <a href="product_detail.html">
-                <div class="discount">
-                    <span>30%</span>
-                </div>
-                <div class="image">
-                    <img src="assert/image/product/cckt03_1.jpg">
-                </div>
-                <div class="name">
-                    <span>San pham 1</span>
-                </div>
-                <div class="price">
-                    <span class="old">$1000</span>
-                    <span class="new">$500</span>
-                </div>
-            </a>
-        </div>
-        <div class="product-item">
-            <a href="product_detail.html">
-                <div class="discount">
-                    <span>30%</span>
-                </div>
-                <div class="image">
-                    <img src="assert/image/product/cckt03_1.jpg">
-                </div>
-                <div class="name">
-                    <span>San pham 1</span>
-                </div>
-                <div class="price">
-                    <span class="old">$1000</span>
-                    <span class="new">$500</span>
-                </div>
-            </a>
-        </div>
-        <div class="product-item">
-            <a href="product_detail.html">
-                <div class="discount">
-                    <span>30%</span>
-                </div>
-                <div class="image">
-                    <img src="assert/image/product/cckt03_1.jpg">
-                </div>
-                <div class="name">
-                    <span>San pham 1</span>
-                </div>
-                <div class="price">
-                    <span class="old">$1000</span>
-                    <span class="new">$500</span>
-                </div>
-            </a>
-        </div>
-        <div class="product-item">
-            <a href="product_detail.html">
-                <div class="discount">
-                    <span>30%</span>
-                </div>
-                <div class="image">
-                    <img src="assert/image/product/cckt03_1.jpg">
-                </div>
-                <div class="name">
-                    <span>San pham 1</span>
-                </div>
-                <div class="price">
-                    <span class="old">$1000</span>
-                    <span class="new">$500</span>
-                </div>
-            </a>
-        </div>
-        <div class="product-item">
-            <a href="product_detail.html">
-                <div class="discount">
-                    <span>30%</span>
-                </div>
-                <div class="image">
-                    <img src="assert/image/product/cckt03_1.jpg">
-                </div>
-                <div class="name">
-                    <span>San pham 1</span>
-                </div>
-                <div class="price">
-                    <span class="old">$1000</span>
-                    <span class="new">$500</span>
-                </div>
-            </a>
-        </div>
-        <div class="product-item">
-            <a href="product_detail.html">
-                <div class="discount">
-                    <span>30%</span>
-                </div>
-                <div class="image">
-                    <img src="assert/image/product/cckt03_1.jpg">
-                </div>
-                <div class="name">
-                    <span>San pham 1</span>
-                </div>
-                <div class="price">
-                    <span class="old">$1000</span>
-                    <span class="new">$500</span>
-                </div>
-            </a>
-        </div>
-        <div class="product-item">
-            <a href="product_detail.html">
-                <div class="discount">
-                    <span>30%</span>
-                </div>
-                <div class="image">
-                    <img src="assert/image/product/cckt03_1.jpg">
-                </div>
-                <div class="name">
-                    <span>San pham 1</span>
-                </div>
-                <div class="price">
-                    <span class="old">$1000</span>
-                    <span class="new">$500</span>
-                </div>
-            </a>
-        </div>
+        @foreach (var pr in Model)
+        {
+            <div class="product-item">
+                <a href="~/Product/ProductDetail?Id=@pr.Id">
+                    <div class="discount">
+                        <span>@pr.Discount%</span>
+                    </div>
+                    <div class="image">
+                        <img src=@Url.Content("/Content/image/product/" + pr.Avatar)>
+                    </div>
+                    <div class="name">
+                        <span>@pr.Name</span>
+                    </div>
+                    <div class="price">
+                        <span class="old">$@pr.Price</span>
+                        <span class="new">$@(pr.Price * (1 - pr.Discount / 100))</span>
+                    </div>
+                </a>
+            </div>
+        }
     </div>
     <div class="btns">
         <button class="load-more">
@@ -139,3 +40,7 @@
     </div>
 </div>
 <!-- PRODUCT END  -->
+
+@section AddJS{
+    <script src="~/Content/js/loadmore.js"></script>
+}

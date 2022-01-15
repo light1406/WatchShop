@@ -11,6 +11,8 @@ namespace WatchShop.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     
     public partial class Customer
     {
@@ -20,14 +22,34 @@ namespace WatchShop.Models
             this.Orders = new HashSet<Order>();
         }
     
+        [Required]
         public int Id { get; set; }
+        [Required]
+        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}")]
         public string Email { get; set; }
+        [Required]
         public string Password { get; set; }
+        [Required]
+        [NotMapped]
+        public string ConfirmPassword { get; set; }
+        [Required]
         public string Avatar { get; set; }
+        [Required]
         public string Phone { get; set; }
+        [Required]
         public string Address { get; set; }
+        [Required]
+        public string FullName { get; set; }
+        [Required]
+        public string Gender { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
+    }
+
+    public enum Gender
+    {
+        Male,
+        Female
     }
 }

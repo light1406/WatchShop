@@ -1,6 +1,11 @@
-﻿
+﻿@model WatchShop.Models.Product 
+@using WatchShop.Models
 @{
     ViewBag.Title = "ProductDetail";
+    DbWatchShop db = new DbWatchShop();
+    List<Image> imgs = db.Images.Where(im => im.Product.Equals(Model.Id)).ToList();
+    Brand br = db.Brands.Find(Model.Brand);
+    List<Product> products = db.Products.Where(pr => pr.Brand.Equals(Model.Brand) && !pr.Id.Equals(Model.Id)).Take(4).ToList();
 }
 
 @section AddCSS{
@@ -13,50 +18,35 @@
     <div class="container-details">
         <div class="details-left">
             <div class="details--left__img-list">
-                <div class="details--left__img-list__item">
-                    <a href="">
-                        <img src="assert/image/product/cckt01_1.jpg" alt="">
-                    </a>
-                </div>
-                <div class="details--left__img-list__item">
-                    <a href="">
-                        <img src="assert/image/product/cckt03_4.jpg" alt="">
-                    </a>
-                </div>
-                <div class="details--left__img-list__item">
-                    <a href="">
-                        <img src="assert/image/product/cckt03_3.jpg" alt="">
-                    </a>
-                </div>
-                <div class="details--left__img-list__item">
-                    <a href="">
-                        <img src="assert/image/product/cckt03_2.jpg" alt="">
-                    </a>
-                </div>
+                @foreach(var img in imgs)
+                {
+                    <div class="details--left__img-list__item">
+                        <a href="">
+                            <img src=@Url.Content("/Content/image/product/" + img.Url)>
+                        </a>
+                    </div>
+                }
             </div>
             <div class="details--left__img--main">
                 <a href="">
-                    <img src="assert/image/product/cckt03_1.jpg" alt="">
+                    <img src=@Url.Content("/Content/image/product/" + Model.Avatar)>
                 </a>
             </div>
         </div>
         <div class="details-right">
             <div class="details-right__header">
-                <h2 class="details-right__header--name-product">HUBLOT 201SA HSY</h2>
+                <h2 class="details-right__header--name-product">@Model.Name</h2>
             </div>
             <div class="details-right__sub">
                 <p class="details-right__header--des">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
-                    quidem. Doloremque, vel fugiat porro rerum earum accusantium ab eius sit! Reiciendis velit illum
-                    ratione maiores, voluptatem dolorem quia at cupiditate! Lorem ipsum dolor
-                    sit amet consectetur adipisicing elit. Pariatur, quidem.
+                    @Model.Description
                 </p>
 
             </div>
             <div class="details-right__price-social">
                 <div class="details-right__price">
-                    <span class="details-right__price-old">$5.999</span>
-                    <span class="details-right__price-new">$4.999</span>
+                    <span class="details-right__price-old">$@Model.Price</span>
+                    <span class="details-right__price-new">$@(Model.Price * (1 - Model.Discount / 100))</span>
                 </div>
                 <div class="details-right__social">
                     <a href="">
@@ -110,17 +100,17 @@
 
             <div class="insurance-info">
                 <p class="insurance-text">Origin</p>
-                <p class="insurance-text-info">Japan</p>
+                <p class="insurance-text-info">@Model.Origin</p>
             </div>
 
             <div class="insurance-info">
                 <p class="insurance-text">Brand</p>
-                <p class="insurance-text-info">Casio </p>
+                <p class="insurance-text-info">@br.Name</p>
             </div>
 
             <div class="insurance-info">
                 <p class="insurance-text">Gender</p>
-                <p class="insurance-text-info">Male </p>
+                <p class="insurance-text-info">@Model.Gender</p>
             </div>
             <div class="insurance-info">
                 <p class="insurance-text">Shipping</p>
@@ -131,26 +121,26 @@
             <h3 class="info-header__heading">SPECIFICATIONS</h3>
             <div class="insurance-info">
                 <p class="insurance-text">Diameter</p>
-                <p class="insurance-text-info">55 mm</p>
+                <p class="insurance-text-info">@Model.Diameter mm</p>
             </div>
 
             <div class="insurance-info">
                 <p class="insurance-text">Width</p>
-                <p class="insurance-text-info">50.1 mm</p>
+                <p class="insurance-text-info">@Model.WireWidth mm</p>
             </div>
 
             <div class="insurance-info">
                 <p class="insurance-text">Material</p>
-                <p class="insurance-text-info">Hard mineral glass</p>
+                <p class="insurance-text-info">@Model.Material</p>
             </div>
 
             <div class="insurance-info">
                 <p class="insurance-text">Strap</p>
-                <p class="insurance-text-info">Stainless steel</p>
+                <p class="insurance-text-info">@Model.Strap</p>
             </div>
             <div class="insurance-info">
                 <p class="insurance-text">Water Proof</p>
-                <p class="insurance-text-info">200M </p>
+                <p class="insurance-text-info">@Model.Waterproof</p>
             </div>
         </div>
     </div>
@@ -166,74 +156,26 @@
             </div>
         </div>
         <div class="content">
-            <div class="product-item">
-                <a href="product_detail.html">
-                    <div class="discount">
-                        <span>30%</span>
-                    </div>
-                    <div class="image">
-                        <img src="assert/image/product/cckt03_1.jpg">
-                    </div>
-                    <div class="name">
-                        <span>San pham 1</span>
-                    </div>
-                    <div class="price">
-                        <span class="old">$1000</span>
-                        <span class="new">$500</span>
-                    </div>
-                </a>
-            </div>
-            <div class="product-item">
-                <a href="product_detail.html">
-                    <div class="discount">
-                        <span>30%</span>
-                    </div>
-                    <div class="image">
-                        <img src="assert/image/product/cckt03_1.jpg">
-                    </div>
-                    <div class="name">
-                        <span>San pham 1</span>
-                    </div>
-                    <div class="price">
-                        <span class="old">$1000</span>
-                        <span class="new">$500</span>
-                    </div>
-                </a>
-            </div>
-            <div class="product-item">
-                <a href="product_detail.html">
-                    <div class="discount">
-                        <span>30%</span>
-                    </div>
-                    <div class="image">
-                        <img src="assert/image/product/cckt03_1.jpg">
-                    </div>
-                    <div class="name">
-                        <span>San pham 1</span>
-                    </div>
-                    <div class="price">
-                        <span class="old">$1000</span>
-                        <span class="new">$500</span>
-                    </div>
-                </a>
-            </div>
-            <div class="product-item">
-                <a href="product_detail.html">
-                    <div class="discount">
-                        <span>30%</span>
-                    </div>
-                    <div class="image">
-                        <img src="assert/image/product/cckt03_1.jpg">
-                    </div>
-                    <div class="name">
-                        <span>San pham 1</span>
-                    </div>
-                    <div class="price">
-                        <span class="old">$1000</span>
-                        <span class="new">$500</span>
-                    </div>
-                </a>
-            </div>
+            @foreach (var pr in products)
+            {
+                <div class="product-item">
+                    <a href="~/Product/ProductDetail?Id=@pr.Id">
+                        <div class="discount">
+                            <span>@pr.Discount%</span>
+                        </div>
+                        <div class="image">
+                            <img src=@Url.Content("/Content/image/product/" + pr.Avatar)>
+                        </div>
+                        <div class="name">
+                            <span>@pr.Name</span>
+                        </div>
+                        <div class="price">
+                            <span class="old">$@pr.Price</span>
+                            <span class="new">$@(pr.Price * (1 - pr.Discount / 100))</span>
+                        </div>
+                    </a>
+                </div>
+            }
         </div>
     </div>
     <!-- END SIMILAR -->

@@ -1,4 +1,5 @@
 .product-item{
+    height: 320px;
     position: relative;
     margin: 22px;
     background-color: var(--lite-gray);
@@ -35,6 +36,7 @@
 }
 
 .product-item .name{
+    max-width: 200px;
     margin: 10px 0;
     text-align: center;
 }
@@ -42,24 +44,28 @@
 .product-item .name span{
     font-size: 2.0rem;
     color: var(--dark-gray);
-    -webkit-box-orient: vertical;
+    display: -webkit-box;
     -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .product-item .price{
+    position: absolute;
     padding: 0 20px;
+    bottom: 10px;
 }
 
 .product-item .price .old{
-    float: left;
     color: var(--gray);
     text-decoration: line-through;
-    font-size: 1.7rem;
+    font-size: 1.8rem;
 }
 
 .product-item .price .new{
-    float: right;
     color: black;
-    font-size: 1.7rem;
+    font-size: 1.8rem;
     font-weight: bold;
+    margin-left: 50px;
 }
