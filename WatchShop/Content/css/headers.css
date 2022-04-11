@@ -79,6 +79,10 @@
     color: var(--dark-yellow);
 }
 
+.header .nav .btns-customer .btns li:hover #count-cart-item{
+    background-color: var(--lite-red);
+}
+
 .header .nav .btns-customer .btns li .btns-customer-submenu {
     position: absolute;
     width: 146px;
@@ -328,6 +332,18 @@
     font-size: 20px;
     color: #ffffff;
     margin-top: 8px;
+}
+
+#count-cart-item{
+    display: block;
+    position: absolute;
+    background: var(--red);
+    color: var(--white);
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 50%;
+    top: -7px;
+    right: -5px;;
 }
 
 /*REPONSIVE*/

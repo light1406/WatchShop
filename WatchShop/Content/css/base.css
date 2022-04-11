@@ -4,13 +4,13 @@
     --dark-western-yellow: #d08451;
     --lite-yellow: #ffcb91;
     --dark-yellow: #b96f00;
-
     --white: #ffff;
     --lite-gray: #f7f7f7;
     --gray: #b7b7b7;
     --dark-gray: #606060;
-
     --black: #000000;
+    --lite-red: #ff7878;
+    --red: #ff0000;
 }
 
 * {
@@ -23,6 +23,9 @@ html{
     font-size: 62.5%;
 }
 
+#app{
+    min-height: 500px
+}
 a {
     text-decoration: none;
     color: var(--western-yellow);

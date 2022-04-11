@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@using WatchShop.Models;
+@{ 
+    Customer user = Session["Customer"] as Customer;
+    List<CartItem> ShopCart = Session["Cart"] as List<CartItem>;
+    var count = 0;
+    if (ShopCart != null) {
+        count = ShopCart.Count();
+    }
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -26,7 +35,6 @@
 <body>
     <!--HEADER-->
     <div class="header">
-
         <div class="menu-mobile">
             <div class="close-menu-mobile">
                 <span><i class="fa fa-close"></i></span>
@@ -37,23 +45,23 @@
             </div>
             <hr />
             <ul class="p-menu">
-                <li><a href="./index.html">HOME </a></li>
-                <li><a href="./about.html">ABOUT </a></li>
+                <li><a href="~/Home">HOME </a></li>
+                <li><a href="~/About">ABOUT </a></li>
                 <li>
                     <div class="toggle-icon">
                         <span><i class="fa fa-angle-down"></i></span>
                     </div>
-                    <a href="/product.html">BRAND </a>
+                    <a href="/Product">BRAND</a>
                     <ul class="submenu">
-                        <li><a href="#">Orient</a></li>
-                        <li><a href="#">Casio</a></li>
-                        <li><a href="#">Titan</a></li>
-                        <li><a href="#">Citizen</a></li>
+                        <li><a href="~/Product/Brand?Name=B01">Casio</a></li>
+                        <li><a href="~/Product/Brand?Name=B02">Citizen</a></li>
+                        <li><a href="~/Product/Brand?Name=B03">Orient</a></li>
+                        <li><a href="~/Product/Brand?Name=B04">Titan</a></li>
                     </ul>
                 </li>
-                <li><a href="./product.html">WATCH MEN </a></li>
-                <li><a href="./product.html">WATCH WOMEN </a></li>
-                <li><a href="./contact.html">CONTACT</a></li>
+                <li><a href="~/Product/Gender?Name=Male">WATCH MEN </a></li>
+                <li><a href="~/Product/Gender?Name=Female">WATCH WOMEN </a></li>
+                <li><a href="~/Contact">CONTACT</a></li>
             </ul>
         </div>
 
@@ -70,32 +78,33 @@
             </div>
             <div class="btns-customer">
                 <ul class="btns">
-                    @if (Session["CAvatar"] == null)
+                    @if (user == null)
                     {
                         <li class="user">
                             <a class="user-icon">
                                 <i class="fa fa-user"></i>
                             </a>
                             <ul class="btns-customer-submenu">
-                                <li><a href="~/Login">Login</a></li>
-                                <li><a href="~/Register">Register</a></li>
+                                <li><a href="~/User/Login">Login</a></li>
+                                <li><a href="~/User/Register">Register</a></li>
                             </ul>
                         </li>
                     }
                     else
                     {
                         <li class="user">
-                            <a class="user-avt" href="./personal.html">
-                                <img src=@Url.Content("/Content/image/avatar/" + Session["CAvatar"]) width=60px></img>
+                            <a class="user-avt" href="~/User">
+                                <img src=@Url.Content("/Content/image/avatar/" +  user.Avatar) width=60px></img>
                             </a>
                             <ul class="btns-customer-submenu">
-                                <li><a href="./personal.html">Personal Info</a></li>
-                                <li><a href="./forgotpassword.html">Log out</a></li>
+                                <li><a href="~/User">@user.FullName</a></li>
+                                <li><a href="~/User/Logout">Log out</a></li>
                             </ul>
                         </li>
                     }
                     <li>
-                        <a href="./cart.html" class="shop-cart">
+                        <a href="~/Cart" class="shop-cart">
+                            @if (@count != 0){<span id="count-cart-item">@count</span>}
                             <i class="fa fa-shopping-cart"></i>
                         </a>
                     </li>
@@ -104,20 +113,20 @@
         </div>
         <div class="menu">
             <ul class="p-menu">
-                <li><a href="./index.html">HOME </a></li>
-                <li><a href="./about.html">ABOUT</a></li>
+                <li><a href="~/Home">HOME </a></li>
+                <li><a href="~/About">ABOUT</a></li>
                 <li>
-                    <a href="/product.html">BRAND </a>
+                    <a href="~/Product">BRAND </a>
                     <ul class="submenu">
-                        <li><a href="#">Orient</a></li>
-                        <li><a href="#">Casio</a></li>
-                        <li><a href="#">Titan</a></li>
-                        <li><a href="#">Citizen</a></li>
+                        <li><a href="~/Product/Brand?Name=B01">Casio</a></li>
+                        <li><a href="~/Product/Brand?Name=B02">Citizen</a></li>
+                        <li><a href="~/Product/Brand?Name=B03">Orient</a></li>
+                        <li><a href="~/Product/Brand?Name=B04">Titan</a></li>
                     </ul>
                 </li>
-                <li><a href="./product.html">WATCH MEN </a></li>
-                <li><a href="./product.html">WATCH WOMEN </a></li>
-                <li><a href="./contact.html">CONTACT</a></li>
+                <li><a href="~/Product/Gender?Name=Male">WATCH MEN </a></li>
+                <li><a href="~/Product/Gender?Name=Female">WATCH WOMEN </a></li>
+                <li><a href="~/Contact">CONTACT</a></li>
             </ul>
         </div>
     </div>
@@ -134,7 +143,9 @@
         </div>
     </div>
 
-    @RenderBody()
+    <div id="app">
+        @RenderBody()
+    </div>
 
     <!-- FOOTER START  -->
     <footer>
@@ -192,7 +203,6 @@
             </div>
 
             <div class="footer-col">
-
                 <ul>
                     <h3 class="footer-col__heading">Contact</h3>
                     <li class="footer-item">
@@ -303,23 +313,14 @@
 
     </footer>
     <!-- FOOTER END -->
-    @if (IsSectionDefined("AddJS"))
-    {
-        @RenderSection("AddJS", required: false)
-    }
 
- 
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="~/Content/js/header.js"></script>
     <script src="~/Content/js/scroll.js"></script>
-
-
-       <!-- co cai nay thi validation chay -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
-
-
+    @if (IsSectionDefined("AddJS"))
+    {
+        @RenderSection("AddJS", required: false)
+    }
 </body>
 </html>

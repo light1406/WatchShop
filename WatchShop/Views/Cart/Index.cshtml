@@ -1,4 +1,4 @@
-﻿
+﻿@model List<WatchShop.Models.CartItem>
 @{
     ViewBag.Title = "Index";
 }
@@ -8,91 +8,101 @@
 }
 
 <div class="container-cart">
-    <div class="cart-list">
-        <div class="cart-list__item">
-            <div class="cart-btn-select">
-                <input type="checkbox">
+    @if (ViewBag.Message == null && Model.Count() > 0)
+    {
+        <div class="cart-header">
+            <div class="product">
+                <span>Product</span>
             </div>
-            <div class="cart-list__item--img">
-                <a href="">
-                    <img src="assert/image/product/cckt01_1.jpg" alt="">
-                </a>
+            <div class="quantity">
+                <span>Quantity</span>
             </div>
-            <div class="cart-list__item--name">
-                <a href=""> CHRONOGRAPH TITANIUM BLUE</a>
+            <div class="price">
+                <span>Price</span>
             </div>
-            <div class="cart-list__item--quantity">
-                <input type="number" min="1" max="20" value="1">
+            <div class="action">
+                <span>Price</span>
             </div>
-            <div class="cart-list__item--price">
-                <span>$159.354</span>
-            </div>
-            <div class="cart-btn-remove">
-                <i class="fas fa-trash-alt"></i>
-            </div>
-
+        </div> 
+        <div class="cart-list">
+            @foreach (var item in Model)
+            {
+                <div class="cart-item" id="@item.Product.Id">
+                    <div class="img">
+                        <a href="~/Product/ProductDetail?Id=@item.Product.Id">
+                            <img src=@Url.Content("/Content/image/product/" + item.Product.Avatar) alt="">
+                        </a>                     
+                    </div>
+                    <div class="name">
+                        <a href="~/Product/ProductDetail?Id=@item.Product.Id">
+                            <span> @item.Product.Name</span>
+                        </a>
+                    </div>
+                    <div class="quantity">
+                        <span> @item.Quantity</span>
+                    </div>
+                    <div class="price">
+                        <span>$@(item.Product.Price * (1 - item.Product.Discount / 100) * item.Quantity)</span>
+                    </div>
+                    <div class="action">
+                        <div class="cart-btn-remove">
+                            <a href="#@item.Product.Id"><i class="fas fa-trash-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
-        <div class="cart-list__item">
-            <div class="cart-btn-select">
-                <input type="checkbox">
-            </div>
-            <div class="cart-list__item--img">
-                <a href="">
-                    <img src="assert/image/product/cckt06_1.jpg" alt="">
-                </a>
-            </div>
-            <div class="cart-list__item--name">
-                <a href=""> CHRONOGRAPH TITANIUM BLUE</a>
-            </div>
-            <div class="cart-list__item--quantity">
-                <input type="number" min="1" max="20" value="1">
-            </div>
-            <div class="cart-list__item--price">
-                <span>$159.354</span>
-            </div>
-            <div class="cart-btn-remove">
-                <i class="fas fa-trash-alt"></i>
-            </div>
-
+        <div class="cart-total">
+            <span>
+                <strong>Total: </strong>
+                <span class="total-price">$@Model.Sum(m => m.Product.Price * (1 - m.Product.Discount / 100) * m.Quantity)</span>
+            </span>
         </div>
-        <div class="cart-list__item">
-            <div class="cart-btn-select">
-                <input type="checkbox">
-            </div>
-            <div class="cart-list__item--img">
-                <a href="">
-                    <img src="assert/image/product/cckt27_1.jpg" alt="">
-                </a>
-            </div>
-            <div class="cart-list__item--name">
-                <a href=""> CHRONOGRAPH TITANIUM BLUE</a>
-            </div>
-            <div class="cart-list__item--quantity">
-                <input type="number" min="1" max="20" value="1">
-            </div>
-            <div class="cart-list__item--price">
-                <span>$159.354</span>
-            </div>
-            <div class="cart-btn-remove">
-                <i class="fas fa-trash-alt"></i>
-            </div>
-
-        </div>
-    </div>
-    <div class="cart-text-total">
-        <p>Total <span>$999.159</span></p>
-    </div>
-    <div class="container-btn-cart">
-        <div class="cart-btn-back">
+        <div class="container-btn-cart">
             <button>
-                <a href="">Back</a>
+                <a href="~/Home">Back to shop</a>
+            </button>
+            <button>
+                <a href="~/Checkout">Checkout</a>
             </button>
         </div>
-        <div class="cart-btn-checkout">
-            <button>
-                <a href="">Checkout</a>
-            </button>
-        </div>
-    </div>
+    }
+    else
+    {
+        <h1 style="margin-left: 50px">@ViewBag.Message</h1>
+    }
 </div>
+
+@section AddJS{
+    <script>
+        $(document).ready(function () {
+            $(".cart-btn-remove").click(function () {
+                if (confirm("Are you sure")) {
+                    var id = $(this).children("a").attr("href").substr(1);
+                    $.ajax({
+                        url: "/Cart/RemoveFromCart",
+                        type: "GET",
+                        dataType: "json",
+                        data: { ProductId: id},
+                        contentType: "application/json; charset=utf-8",
+                        success: function (rp) {
+                            if (rp.count > 0) {
+                                $("#" + id).remove();
+                                $(".total-price").text("$" + parseFloat(rp.total).toFixed(2));
+                                $("#count-cart-item").text(rp.count);
+                            } else {
+                                $("#count-cart-item").remove();
+                                $(".container-cart").html("<h1 style='margin - left: 50px'>Empty</h1>");
+                            }
+                        },
+                        error: function (ex) {
+                            console.log("error");
+                        }
+
+                    })
+                }
+            })
+        })
+    </script>
+}
 

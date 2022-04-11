@@ -1,4 +1,4 @@
-﻿
+﻿@model WatchShop.Models.Customer
 @{
     ViewBag.Title = "Index";
 }
@@ -11,11 +11,10 @@
     <div class="nav">
         <div class="user">
             <div class="avt">
-                <img src="assert/image/avatar/hutao.png" width="100" />
+                <img src=@Url.Content("/Content/image/avatar/" + Model.Avatar) width="100" />
             </div>
             <div class="nickname">
-                <span>Nguyễn Minh Châu</span><br>
-                <a href="">Change avatar</a>
+                <span>@Model.FullName</span>
             </div>
         </div>
         <div class="menu">
@@ -35,28 +34,22 @@
             <form>
                 <div class="form-item">
                     <label>Full name</label>
-                    <input type="text" id="fname" name="fname" value="Nguyễn Minh Châu" />
+                    <input type="text" id="fname" name="fname" value="@Model.FullName" />
                 </div>
                 <div class="form-item">
                     <label>Email</label>
-                    <span>lig****@@gmail.com</span>
+                    <span>@Model.Email</span>
                 </div>
                 <div class="form-item">
                     <label>Phone</label>
-                    <span>086***69</span>
+                    <span>@Model.Phone</span>
                 </div>
                 <div class="form-item">
                     <label>Gender</label>
-                    <input type="radio" id="male" name="gender" value="Male" checked=true>
+                    <input type="radio" id="male" name="gender" value="Male" checked=@(Model.Gender.Equals("Male"))>
                     <label for="male">Male</label>
-                    <input type="radio" id="female" name="gender" value="female">
+                    <input type="radio" id="female" name="gender" value="female" checked=@(Model.Gender.Equals("Female"))>
                     <label for="male">Female</label>
-                    <input type="radio" id="other" name="gender" value="other">
-                    <label for="male">Other</label>
-                </div>
-                <div class="form-item">
-                    <label>Birth date</label>
-                    <input type="date" name="bdate" value="2001-06-14" min="1930-01-01" max="2021-12-31">
                 </div>
                 <input type="submit" name="submit" value="Save" />
             </form>

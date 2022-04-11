@@ -1,6 +1,8 @@
-﻿
+﻿@using WatchShop.Models
 @{
     ViewBag.Title = "Index";
+    Customer user = Session["Customer"] as Customer;
+    List<CartItem> ShopCart = Session["Cart"] as List<CartItem>;
 }
 
 @section AddCSS{
@@ -13,28 +15,28 @@
             <h2 class="checkout-left__header--heading">Payment Details</h2>
         </div>
         <div class="checkout-left__form">
-            <form action="">
+            <div class="infor-user">
                 <div class="checkout-left__form--input">
                     <label>Full Name</label>
-                    <input type="text">
+                    <span>@user.FullName</span>
                 </div>
                 <div class="checkout-left__form--input">
                     <label>Address</label>
-                    <input type="text">
+                    <span>@user.Address</span>
                 </div>
                 <div class="checkout-left__form--input">
                     <label>Phone Number</label>
-                    <input type="text">
+                    <span>@user.Phone</span>
                 </div>
                 <div class="checkout-left__form--input">
                     <label>Email</label>
-                    <input type="text">
+                    <span>@user.Email</span>
                 </div>
                 <div class="checkout-left__form--input">
-                    <label>Note </label>
-                    <textarea></textarea>
+                    <label>Note</label>
+                    <textarea id="note"></textarea>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
     <div class="checkout-right">
@@ -46,29 +48,17 @@
                 <span>Product</span>
                 <span>Price</span>
             </div>
-            <div class="checkout-right__bill--info">
-                <span>Hublot 2022</span>
-                <span>x 10</span>
-                <span class="info-price">$15.156</span>
-            </div>
-            <div class="checkout-right__bill--info">
-                <span>Hublot 2022</span>
-                <span>x 10</span>
-                <span class="info-price">$15.156</span>
-            </div>
-            <div class="checkout-right__bill--info">
-                <span>Hublot 2022</span>
-                <span>x 10</span>
-                <span class="info-price">$15.156</span>
-            </div>
-            <div class="checkout-right__bill--info">
-                <span>Hublot 2022</span>
-                <span>x 10</span>
-                <span class="info-price">$15.156</span>
-            </div>
+            @foreach (var item in ShopCart)
+            {
+                <div class="checkout-right__bill--info">
+                    <span>@item.Product.Name</span>
+                    <span>@item.Quantity</span>
+                    <span class="info-price">$@(item.Product.Price * (1 - item.Product.Discount / 100) * item.Quantity)</span>
+                </div>
+            }
             <div class="checkout-right__bill--title">
                 <span>Subtotal</span>
-                <span>$59.123</span>
+                <span>$@ShopCart.Sum(item => item.Product.Price * (1 - item.Product.Discount / 100) * item.Quantity)</span>
             </div>
             <div class="checkout-right__bill--title">
                 <span>Ship</span>
@@ -80,10 +70,25 @@
             </div>
             <div class="checkout-right__bill--btn">
                 <button>
-                    <a href="">CHECKOUT</a>
+                    <span>CHECKOUT</span>
                 </button>
             </div>
         </div>
     </div>
 </div>
 
+@section AddJS{
+    <script>
+        $(document).ready(function () {
+            $(".checkout-right__bill--btn button").click(function () {
+                var note = $("textarea#note").val();
+                $.ajax({
+                    url: "/CheckOut/Payment",
+                    type: "POST",
+                    data: { Note: "note" },
+                    success: function (ex) { window.location.href = "Home" },
+                })
+            })
+        })
+    </script>
+}

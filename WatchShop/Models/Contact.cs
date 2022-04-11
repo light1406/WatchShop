@@ -32,6 +32,5 @@ namespace WatchShop.Models
         [Required(ErrorMessage = "Need your content")]
         [Display(Name = "Wanna say something else")]
         public string Message { get; set; }
-
     }
 }

@@ -23,7 +23,7 @@
             {
                 <p class="warning">@ViewBag.Error</p>
             }
-            @using (Html.BeginForm("Index", "Login", FormMethod.Post))
+            @using (Html.BeginForm("Login", "User", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
                 <div class="login-input">
@@ -42,6 +42,5 @@
                 </div>
             }
         </div>
-
     </div>
 </div>

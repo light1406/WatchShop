@@ -1,6 +1,6 @@
 ﻿@model List<WatchShop.Models.Product>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Gender";
 }
 
 @section AddCSS{
@@ -47,10 +47,10 @@
             $(".load-more").click(function () {
                 var npr = document.getElementsByClassName("product-item").length;
                 $.ajax({
-                    url: "/Product/LoadMore",
+                    url: "/Product/LoadMoreGender",
                     type: "GET",
                     dataType: "json",
-                    data: { count: npr },
+                    data: { count: npr, gender: "@ViewBag.Gender"},
                     contentType: "application/json; charset=utf-8",
                     success: function (rp) {
                         if (rp != "") {

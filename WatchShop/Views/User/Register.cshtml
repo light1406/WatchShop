@@ -20,7 +20,7 @@
             <p class="register-right__header--des">Please use the account you have been give to register!</p>
         </div>
         <div class="register-right__form">
-            @using (Html.BeginForm("Index", "Register", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("Register", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 <div class="register-input">
                     @Html.LabelFor(m => m.Email)
@@ -37,6 +37,11 @@
                     @Html.LabelFor(m => m.ConfirmPassword)
                     @Html.TextBoxFor(m => m.ConfirmPassword)
                     @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "warning", @style = "color: red" })
+                </div>
+                <div class="register-input">
+                    @Html.LabelFor(m => m.FullName)
+                    @Html.TextBoxFor(m => m.FullName)
+                    @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "warning", @style = "color: red" })
                 </div>
                 <div class="register-input">
                     @Html.LabelFor(m => m.Gender)
@@ -67,4 +72,3 @@
 
     </div>
 </div>
-
